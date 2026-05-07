@@ -11,10 +11,16 @@ path+=(
 )
 export PATH
 
-eval "$(starship init zsh)"
-
 autoload -Uz compinit && compinit
 source ~/.antidote/antidote.zsh
 
 # initialize plugins statically with ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
 antidote load
+
+# fnm
+FNM_PATH="/home/aidin/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "$(fnm env  --use-on-cd --shell zsh)"
+fi
+
