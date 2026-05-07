@@ -17,6 +17,9 @@ source ~/.antidote/antidote.zsh
 # initialize plugins statically with ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
 antidote load
 
+zstyle ':omz:plugins:alias-finder' autoload yes
+zstyle ':omz:plugins:alias-finder' longer yes
+
 # fnm
 FNM_PATH="/home/aidin/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
