@@ -20,22 +20,37 @@ My personal dotfiles for Fedora and macOS, managed with [GNU Stow](https://www.g
 - [ohmyzsh/dirhistory](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory) — Navigate directory history with Alt+Left/Right
 - [ohmyzsh/command-not-found](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/command-not-found) — Suggests packages for unknown commands
 - [ohmyzsh/zoxide](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/zoxide) — Zoxide integration
+- [ohmyzsh/starship](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/starship) — Starship prompt integration
+- [ohmyzsh/zsh-interactive-cd](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/zsh-interactive-cd) — Interactive cd with fzf
+- [ohmyzsh/alias-finder](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/alias-finder) — Suggests shorter aliases
+- [ohmyzsh/aliases](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/aliases) — Common shell aliases
 - [Aloxaf/fzf-tab](https://github.com/Aloxaf/fzf-tab) — Fuzzy tab completion
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) — Fish-like autosuggestions
 - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) — Syntax highlighting
-- [zsh-you-should-use](https://github.com/MichaelAquilina/zsh-you-should-use) — Reminds you to use aliases
-- [zsh-bat](https://github.com/fdellwing/zsh-bat) — bat aliases
+- [zsh-history-substring-search](https://github.com/zsh-users/zsh-history-substring-search) — History search with substring
+- [fdellwing/zsh-bat](https://github.com/fdellwing/zsh-bat) — bat aliases
+
+## Aliases
+
+| Alias | Command |
+|-------|---------|
+| `vim` | `nvim` |
+| `atd` | `antidote` |
+| `lf` | `ls -lf` |
+| `la` | `ls -la` |
+| `o` | `opencode` |
+| `osl` | `opencode session list` |
 
 ## Dependencies
 
 **Fedora:**
 ```bash
-sudo dnf install stow zsh neovim git zoxide fzf bat xclip
+sudo dnf install stow zsh neovim git zoxide fzf bat xclip ripgrep fd
 ```
 
 **macOS:**
 ```bash
-brew install stow zsh neovim git zoxide fzf bat
+brew install stow zsh neovim git zoxide fzf bat ripgrep fd
 ```
 
 ## Installation

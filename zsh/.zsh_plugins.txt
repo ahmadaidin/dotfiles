@@ -1,3 +1,6 @@
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-history-substring-search
 ohmyzsh/ohmyzsh path:plugins/git
 ohmyzsh/ohmyzsh path:plugins/sudo
 ohmyzsh/ohmyzsh path:plugins/extract
@@ -10,6 +13,4 @@ ohmyzsh/ohmyzsh path:plugins/zsh-interactive-cd
 ohmyzsh/ohmyzsh path:plugins/alias-finder
 ohmyzsh/ohmyzsh path:plugins/aliases
 Aloxaf/fzf-tab
-zsh-users/zsh-autosuggestions
-zsh-users/zsh-syntax-highlighting
 fdellwing/zsh-bat
