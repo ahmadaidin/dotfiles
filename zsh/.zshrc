@@ -32,6 +32,7 @@ if [[ $(uname) == Darwin ]]; then
 
   # ---------- macOS-only Aliases ----------
   alias nq="networkquality"
+  alias brew-dump="rm Brewfile && brew bundle dump --file=Brewfile"
 else
   # ---------- Fedora ----------
   . "$HOME/.local/bin/env"

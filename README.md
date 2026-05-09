@@ -44,48 +44,71 @@ My personal dotfiles for Fedora and macOS, managed with [GNU Stow](https://www.g
 
 ## Dependencies
 
-**Fedora:**
-```bash
-sudo dnf install stow zsh neovim git zoxide fzf bat xclip ripgrep fd
-```
+### Main dependencies
+- zsh (built-in on macOS)
+- git (built-in on macOS)
+- antidote
+- zoxide
+- fzf
+- bat
+- xclip (Linux only)
+- ripgrep
+- fd
 
-**macOS:**
-```bash
-brew install stow zsh neovim git zoxide fzf bat ripgrep fd php@8.3 mysql-client libpq
-```
-
-**Required for Antidote:**
-```bash
-git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-$HOME}/.antidote
-```
-
-**fnm (Node version manager):**
-```bash
-curl -fsSL https://fnm.vercel.app/install | bash
-```
-
-**Bun:**
-```bash
-curl -fsSL https://bun.sh/install | bash
-```
-
-**pnpm (via Corepack):**
-```bash
-# Update corepack first (fixes outdated signatures issue)
-npm install --global corepack@latest
-
-# Enable and use pnpm - corepack auto-downloads it
-corepack enable && corepack use pnpm@latest
-```
-
-**MySQL Workbench (macOS):**
-Download from https://dev.mysql.com/downloads/workbench/
+### Alias and Path dependencies
+- bun
+- pnpm
+- fnm
 
 ## Installation
 
 ```bash
+# Antidote (Zsh plugin manager)
+git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-$HOME}/.antidote
+
+# Bun (JavaScript runtime, package manager, etc.)
+curl -fsSL https://bun.sh/install | bash
+
+# fnm (Node version manager)
+curl -fsSL https://fnm.vercel.app/install | bash
+fnm install --lts && fnm default lts
+
+# pnpm (node package manager via Corepack)
+npm install --global corepack@latest # Update corepack first (fixes outdated signatures issue)
+corepack enable && corepack use pnpm@latest # Enable and use pnpm - corepack auto-downloads it
+```
+
+### macOS
+
+```bash
+# 1. Install Homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# 2. Clone dotfiles
 git clone https://github.com/ahmadaidin/dotfiles.git ~/dotfiles
 cd ~/dotfiles
+
+# 3. Install all apps
+brew bundle install
+
+# MySQL Workbench (macOS)
+# Download from https://dev.mysql.com/downloads/workbench/
+
+# 4. Stow configs
+stow zsh git
+```
+
+### Fedora
+
+```bash
+# 1. Install dependencies
+sudo dnf install stow zsh git zoxide fzf bat xclip ripgrep fd
+
+# 2. Clone dotfiles
+git clone https://github.com/ahmadaidin/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+
+# 3. Stow configs
 stow zsh git
 ```
 
@@ -110,15 +133,12 @@ The zshrc automatically loads `.secret.env` if it exists.
 
 ```
 dotfiles/
+├── Brewfile              # macOS: all Homebrew packages (run brew bundle install)
 ├── zsh/
 │   ├── .zshrc
 │   ├── .zsh_plugins.txt
 │   └── .p10k.zsh
 ├── git/
-│   └── .gitconfig
+│   ├── .gitconfig
+│   └── .gitignore_global
 ```
-
-## Platform-Specific
-
-- **macOS**: Homebrew paths, PHP 8.3, MySQL client, pnpm, bun, network quality
-- **Fedora**: Uses `$HOME/.local/bin/env` for additional setup
