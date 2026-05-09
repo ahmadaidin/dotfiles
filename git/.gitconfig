@@ -1,35 +1,90 @@
+# ---------- Init ----------
 [init]
+	# Default branch name when running `git init`
 	defaultBranch = main
+
+# ---------- User ----------
 [user]
+	# Your identity for commits
 	email = ahmadaidin08.aa@gmail.com
 	name = Ahmad Aidin
+
+# ---------- Push ----------
 [push]
+	# Push matching tags when pushing a branch
 	followTags = true
+	# Auto-set upstream tracking for new branches (no need for -u)
+	autoSetupRemote = true
+
+# ---------- Pull ----------
 [pull]
+	# Rebase when pulling instead of merge (cleaner history)
 	rebase = true
+
+# ---------- Rebase ----------
 [rebase]
+	# Stash before rebasing (auto-stash unstaged changes)
 	autostash = true
+	# Squash commits automatically during rebase
 	autoSquash = true
+	# Update refs after rebasing
 	updateRefs = true
+
+# ---------- Diff ----------
 [diff]
+	# Diff algorithm: histogram = faster, good results
 	algorithm = histogram
+	# Show moved lines with plain colors (not color-coded)
 	colorMoved = plain
+	# Use mnemonic prefixes in diffs (c for copied, r for renamed)
 	mnemonicPrefix = true
+
+# ---------- Merge ----------
 [merge]
+	# Use zdiff3 conflict style (better conflict resolution)
 	conflictstyle = zdiff3
+
+# ---------- Fetch ----------
 [fetch]
+	# Prune remote tags that no longer exist
 	pruneTags = true
+	# Fetch all remotes (not just origin)
 	all = true
+
+# ---------- Rerere ----------
 [rerere]
+	# "Reuse recorded resolution" - remember how you resolved conflicts
 	enabled = true
+	# Automatically stage resolved conflicts after resolution
 	autoupdate = true
+
+# ---------- Column ----------
 [column]
+	# Align output in columns where applicable
 	ui = auto
+
+# ---------- Branch ----------
 [branch]
+	# Sort branches by commit date (most recent first)
 	sort = -committerdate
+
+# ---------- Tag ----------
 [tag]
+	# Sort tags by version (semantic versioning order)
 	sort = version:refname
+
+# ---------- Help ----------
 [help]
+	# Prompt before auto-correcting mistyped commands
 	autocorrect = prompt
+
+# ---------- Color ----------
 [color]
+	# Enable colored output automatically
 	ui = auto
+
+# ---------- Core ----------
+[core]
+	# Global gitignore file (applies to all repos)
+	excludesfile = ~/.gitignore_global
+
