@@ -30,7 +30,6 @@ export PATH
 if [[ $(uname) == Darwin ]]; then
   # ---------- macOS Paths ----------
   path=(
-    /opt/homebrew/opt/php@8.3/bin
     /opt/homebrew/opt/mysql-client/bin
     /opt/homebrew/opt/libpq/bin
     $HOME/.phpenv/bin
