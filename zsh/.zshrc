@@ -5,6 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Auto cd to directory when typing directory name
+setopt AUTO_CD
+
 # ---------- Locale ----------
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -70,8 +73,9 @@ alias lf="ls -lf"
 alias la="ls -la"
 alias o="opencode"
 alias osl="opencode session list"
-alias z="zed"
+alias zd="zed"
 alias cup="clickup"
+alias rr="rm -rf"
 
 # ---------- Prompt ----------
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
@@ -83,3 +87,40 @@ fi
 
 # ---------- bun completions ----------
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+export FZF_DEFAULT_OPTS='
+  --preview "tree -C {} | head -50"
+  --color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9
+  --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9
+  --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6
+  --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4
+'
+
+zi() {
+  local dir
+  dir=$(zoxide query -l | fzf) && z "$dir"
+}
+
+zr() {
+  local dir
+  dir=$(zoxide query -l | sort -k2 -rn | fzf)
+  [ -n "$dir" ] && z "$dir"
+}
+
+zfp() {
+  local dir
+  dir=$(zoxide query -l | fzf --preview 'tree -L 2 {}')
+  [ -n "$dir" ] && z "$dir" && ls -la
+}
+
+zdev() {
+  local dir
+  dir=$(zoxide query -l | grep -i Dev | fzf)
+  [ -n "$dir" ] && z "$dir"
+}
+
+zxp() {
+  local dir
+  dir=$(zoxide query -l | grep -i Explore | fzf)
+  [ -n "$dir" ] && z "$dir"
+}
