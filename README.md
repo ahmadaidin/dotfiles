@@ -5,11 +5,9 @@ My personal dotfiles for Fedora and macOS, managed with [GNU Stow](https://www.g
 ## Contents
 
 | Package | Description |
-|--------|-------------|
-| `zsh` | Zsh config with [Antidote](https://getantidote.github.io/) plugin manager |
-| `nvim` | Neovim config |
+|---------|-------------|
+| `zsh` | Zsh config with [Antidote](https://getantidote.github.io/) + [Powerlevel10k](https://github.com/romkatv/powerlevel10k) |
 | `git` | Git global config |
-| `starship` | [Starship](https://starship.rs/) prompt config |
 
 ## Zsh Plugins
 
@@ -20,7 +18,6 @@ My personal dotfiles for Fedora and macOS, managed with [GNU Stow](https://www.g
 - [ohmyzsh/dirhistory](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory) — Navigate directory history with Alt+Left/Right
 - [ohmyzsh/command-not-found](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/command-not-found) — Suggests packages for unknown commands
 - [ohmyzsh/zoxide](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/zoxide) — Zoxide integration
-- [ohmyzsh/starship](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/starship) — Starship prompt integration
 - [ohmyzsh/zsh-interactive-cd](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/zsh-interactive-cd) — Interactive cd with fzf
 - [ohmyzsh/alias-finder](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/alias-finder) — Suggests shorter aliases
 - [ohmyzsh/aliases](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/aliases) — Common shell aliases
@@ -40,6 +37,10 @@ My personal dotfiles for Fedora and macOS, managed with [GNU Stow](https://www.g
 | `la` | `ls -la` |
 | `o` | `opencode` |
 | `osl` | `opencode session list` |
+| `z` | `zed` |
+| `nq` | `networkquality` (macOS only) |
+| `wget` | `wget2` |
+| `cup` | `clickup` |
 
 ## Dependencies
 
@@ -50,16 +51,60 @@ sudo dnf install stow zsh neovim git zoxide fzf bat xclip ripgrep fd
 
 **macOS:**
 ```bash
-brew install stow zsh neovim git zoxide fzf bat ripgrep fd
+brew install stow zsh neovim git zoxide fzf bat ripgrep fd php@8.3 mysql-client libpq
 ```
+
+**Required for Antidote:**
+```bash
+git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-$HOME}/.antidote
+```
+
+**fnm (Node version manager):**
+```bash
+curl -fsSL https://fnm.vercel.app/install | bash
+```
+
+**Bun:**
+```bash
+curl -fsSL https://bun.sh/install | bash
+```
+
+**pnpm (via Corepack):**
+```bash
+# Update corepack first (fixes outdated signatures issue)
+npm install --global corepack@latest
+
+# Enable and use pnpm - corepack auto-downloads it
+corepack enable && corepack use pnpm@latest
+```
+
+**MySQL Workbench (macOS):**
+Download from https://dev.mysql.com/downloads/workbench/
 
 ## Installation
 
 ```bash
 git clone https://github.com/ahmadaidin/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-stow zsh git starship nvim
+stow zsh git
 ```
+
+## Secrets
+
+Create `~/.secret.env` for API keys and credentials (excluded from dotfiles):
+
+```bash
+touch ~/.secret.env
+chmod 600 ~/.secret.env
+```
+
+Add to `.secret.env`:
+```bash
+export API_KEY="your-key"
+export DEEPSEEK_API_KEY="your-key"
+```
+
+The zshrc automatically loads `.secret.env` if it exists.
 
 ## Structure
 
@@ -67,12 +112,13 @@ stow zsh git starship nvim
 dotfiles/
 ├── zsh/
 │   ├── .zshrc
-│   └── .zsh_plugins.txt
-├── nvim/
-│   └── .config/nvim/
+│   ├── .zsh_plugins.txt
+│   └── .p10k.zsh
 ├── git/
 │   └── .gitconfig
-└── starship/
-    └── .config/
-        └── starship.toml
 ```
+
+## Platform-Specific
+
+- **macOS**: Homebrew paths, PHP 8.3, MySQL client, pnpm, bun, network quality
+- **Fedora**: Uses `$HOME/.local/bin/env` for additional setup

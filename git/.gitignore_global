@@ -1,0 +1,10 @@
+# Global gitignore - applies to all repos for this user
+
+# Backup files
+*~
+
+# macOS folder metadata
+.DS_Store
+
+# Environment files (often contain secrets)
+*.env
