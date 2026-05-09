@@ -5,6 +5,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# ---------- Locale ----------
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+# Enable colored ls
+export CLICOLOR=1
+
 # ---------- Core Paths (shared) ----------
 path=(
   /usr/local/bin
